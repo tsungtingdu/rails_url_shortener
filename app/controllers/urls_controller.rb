@@ -16,11 +16,12 @@ class UrlsController < ApplicationController
       # create new
       @short_url = url_generator
       @result = Url.new(long_url: url_params['long_url'], short_url: @short_url)
-
-      @result = nil unless @result.save
-    elsif exist_url.nil?
-      # user existed
+      @result.save
+    elsif exist_url.nil? == false
+      # use existed one
       @result = exist_url
+    else
+      flash[:alert] = 'please enter valid url'
     end
     # back to index page
     @url = Url.new
