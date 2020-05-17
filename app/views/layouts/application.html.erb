@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsUrl</title>
+    <title>TD's URL shortener</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand" href="/">TD's Url shortener</a>
+      </nav>
+    </header>
+    <div class="container mt-3">
+      <%= yield %>
+    </div>
   </body>
 </html>

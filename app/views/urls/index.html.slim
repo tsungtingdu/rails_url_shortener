@@ -1,0 +1,17 @@
+div class="container card"
+  div class="row d-flex justify-content-center"
+    div class="col-sm-8"      
+    br
+    = form_for @url  do |f| 
+      div class="form-group"
+        = f.label :long_url, "Enter your url below:"
+        = f.text_field :long_url, :class => "form-control"
+      div.actions
+        = f.submit 'create', :class => "btn btn-success"    
+    br
+    - if @result
+      div class="alert alert-success" role="alert"
+        p Here's your short url:
+        p style="color:blue" 
+          a href="#{urls_path}/#{@result.short_url}" target=" _blank" style="color:#337ab7"
+            = "#{urls_url}/#{@result.short_url}"
