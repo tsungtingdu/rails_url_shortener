@@ -26,9 +26,6 @@
       </nav>
     </header>
     <div class="container mt-3">
-      <%= yield %>
-    </div>
-    <div class="container mt-3">
       <% if alert && notice  %>
         <div class="alert alert-danger" role="alert" style="margin: 30px 0 ;">
           <p class="alert"><%= alert %></p>
@@ -45,6 +42,9 @@
             <p class="notice"><%= notice %></p>
         </div>   
       <% end %>
+    </div>
+    <div class="container mt-3">
+      <%= yield %>
     </div>
   </body>
 </html>
