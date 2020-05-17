@@ -17,25 +17,28 @@ div class="container card"
             = "#{urls_url}/#{@result.short_url}"
     br
 - if @urls
-  div class='container'
-    table class='table'
-      thead
-        tr
-          th style="width:5%" #
-          th style="width:25%" url
-          th style="width:25%" short url
-          th style="width:10%" clicks
-          th style="width:25%" created at
-      tbody
-        - @urls.each do |url|
-          tr
-            th #
-            td  
-              = truncate(url.long_url, length:30)
-            td
-              a href="#{urls_path}/#{url.short_url}" target=" _blank" style="color:#337ab7"
-                = "#{urls_url}/#{url.short_url}"
-            td
-              = url.count ? url.count : 0
-            td
-              =url.created_at
+  div class='container'  
+        table class='table'
+          thead
+            tr
+              th style="width:5%" #
+              th style="width:25%" url
+              th style="width:25%" short url
+              th style="width:10%" clicks
+              th style="width:25%" created at
+              th style="width:5%" #
+          tbody
+            - @urls.each do |url|
+              tr
+                th #
+                td  
+                  = truncate(url.long_url, length:30)
+                td
+                  a href="#{urls_path}/#{url.short_url}" target=" _blank" style="color:#337ab7"
+                    = "#{urls_url}/#{url.short_url}"
+                td
+                  = url.count ? url.count : 0
+                td
+                  = url.created_at
+                td
+                  = link_to 'Delete', url_path(url), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger btn-sm'

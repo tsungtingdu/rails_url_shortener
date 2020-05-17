@@ -39,7 +39,20 @@ class UrlsController < ApplicationController
     end
     # back to index page
     @url = Url.new
+    if current_user
+      @urls = Url.where(user_id: current_user.id).order('created_at DESC')
+    end
     render :index
+  end
+
+  def destroy
+    puts params[:id]
+    @url = Url.where(
+      id: params[:id],
+      user_id: current_user.id
+    ).first
+    @url.destroy
+    redirect_to urls_path
   end
 
   private
