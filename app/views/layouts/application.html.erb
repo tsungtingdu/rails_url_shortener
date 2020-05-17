@@ -13,10 +13,38 @@
     <header>
       <nav class="navbar navbar-light bg-light justify-content-between">
         <a class="navbar-brand" href="/">TD's Url shortener</a>
+
+        <div class='navbar-items'>
+          <% if current_user %>
+            <%= link_to('Sign out', destroy_user_session_path, method: :delete, :class => "btn btn-outline-light" ) %> 
+            <%= link_to('Change Password', edit_user_registration_path,  :class => "btn btn-outline-light") %>
+          <% else %>
+            <%= link_to('Sign up', new_user_registration_path,  :class => "btn btn-outline-light") %> 
+            <%= link_to('Sign in', new_user_session_path,  :class => "btn btn-outline-light") %>
+          <% end %>
+        </div>
       </nav>
     </header>
     <div class="container mt-3">
       <%= yield %>
+    </div>
+    <div class="container mt-3">
+      <% if alert && notice  %>
+        <div class="alert alert-danger" role="alert" style="margin: 30px 0 ;">
+          <p class="alert"><%= alert %></p>
+        </div>
+        <div class="alert alert-success" role="alert" style="margin: 30px 0 ;">
+          <p class="notice"><%= notice %></p>
+        </div>
+      <% elsif alert %>
+        <div class="alert alert-danger" role="alert" style="margin: 30px 0 ;">
+          <p class="alert"><%= alert %></p>
+        </div>   
+      <% elsif notice %>
+          <div class="alert alert-success" role="alert" style="margin: 30px 0 ;">
+            <p class="notice"><%= notice %></p>
+        </div>   
+      <% end %>
     </div>
   </body>
 </html>
