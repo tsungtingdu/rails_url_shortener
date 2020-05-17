@@ -3,6 +3,7 @@
 class UrlsController < ApplicationController
   def index
     @url = Url.new
+    flash[:alert] = nil
   end
 
   def show
@@ -11,6 +12,7 @@ class UrlsController < ApplicationController
   end
 
   def create
+    flash[:alert] = nil
     exist_url = Url.find_by long_url: url_params['long_url']
     if exist_url.nil? && valid_url?(url_params['long_url'])
       # create new
