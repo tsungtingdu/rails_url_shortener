@@ -8,6 +8,8 @@ class UrlsController < ApplicationController
 
   def show
     @url = Url.find_by short_url: params[:id]
+    count = @url.count.nil? ? 1 : (@url.count + 1)
+    @url.update(count: count)
     redirect_to @url.long_url.to_s
   end
 
@@ -22,7 +24,8 @@ class UrlsController < ApplicationController
       @result = Url.new(
         long_url: url_params['long_url'],
         short_url: @short_url,
-        user: current_user
+        user: current_user,
+        count: 0
       )
       @result.save
     elsif exist_url.nil? == false
