@@ -3,6 +3,9 @@
 class UrlsController < ApplicationController
   def index
     @url = Url.new
+    if current_user
+      @urls = Url.where(user_id: current_user.id).order('created_at DESC')
+    end
     flash[:alert] = nil
   end
 
