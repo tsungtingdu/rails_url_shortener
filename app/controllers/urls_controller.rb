@@ -14,10 +14,16 @@ class UrlsController < ApplicationController
   def create
     flash[:alert] = nil
     exist_url = Url.find_by long_url: url_params['long_url']
+
     if exist_url.nil? && valid_url?(url_params['long_url'])
       # create new
+
       @short_url = url_generator
-      @result = Url.new(long_url: url_params['long_url'], short_url: @short_url)
+      @result = Url.new(
+        long_url: url_params['long_url'],
+        short_url: @short_url,
+        user: current_user
+      )
       @result.save
     elsif exist_url.nil? == false
       # use existed one
