@@ -5,10 +5,10 @@ class UrlsController < ApplicationController
 
   def index
     # for exercise - use concerns
-    say_hello
+    # say_hello
     # for exercise - use services
-    service = SlackNotifyService.new('已出借!')
-    service.perform
+    # service = SlackNotifyService.new('已出借!')
+    # service.perform
 
     @url = Url.new
     if current_user
@@ -59,7 +59,7 @@ class UrlsController < ApplicationController
       id: params[:id],
       user_id: current_user.id
     ).first
-    @url.destroy｀
+    @url.destroy
     redirect_to urls_path
   end
 
