@@ -14,3 +14,18 @@ services:
       - POSTGRES_PASSWORD=password
     volumes: 
       - ./tmp/data/postgresql:/var/lib/postgresql/data
+  web:
+    build: .
+    command: bin/rails server --port 3000 --binding 0.0.0.0
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_NAME: rails_url_development
+      DATABASE_USERNAME: username
+      DATABASE_PASSWORD: password
+      DATABASE_HOST: db
+      RAILS_ENV: development
+    volumes:
+      - .:/myapp
